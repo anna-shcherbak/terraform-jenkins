@@ -106,7 +106,7 @@ resource "aws_instance" "jenkins_master" {
   }
 }
 
-resource "aws_instance" "jenkins_agent {
+resource "aws_instance" "jenkins_agent" {
   ami             = data.aws_ami.amazon-linux-2.id
   instance_type   = "t2.micro"
   security_groups = [aws_security_group.security_group_jenkins_agent.name]

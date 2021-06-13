@@ -14,12 +14,13 @@ provider "aws" {
   region  = "eu-central-1"
 }
 
-# Creation of security aws_security_group
+# Creation of security groups
 
 variable "ingressrules" {
   type    = list(number)
   default = [8080, 22]
 }
+
 #security group for Jenkins master
 resource "aws_security_group" "security_group_jenkins_master" {
   name        = "Allow traffic"
@@ -106,6 +107,7 @@ resource "aws_instance" "jenkins_master" {
   }
 }
 
+# Creation of jenkins agent
 resource "aws_instance" "jenkins_agent" {
   ami             = data.aws_ami.amazon-linux-2.id
   instance_type   = "t2.micro"
